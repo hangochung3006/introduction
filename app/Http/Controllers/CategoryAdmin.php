@@ -11,7 +11,7 @@ class CategoryAdmin extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -19,7 +19,7 @@ class CategoryAdmin extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.category.create");
     }
 
     /**
