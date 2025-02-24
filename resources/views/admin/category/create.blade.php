@@ -6,39 +6,37 @@
         <div class="card-header">
           <h3 class="card-title">Danh mục</h3>
         </div>
-        <!-- /.card-header -->
-        <!-- form start -->
-        <form method="post" action="{{ route('category.store') }}"> 
+        <form method="post" action="{{ route('category.store') }}" enctype="multipart/form-data" >
+            @csrf
           <div class="card-body">
             <div class="form-group">
-              <label for="title">Email address</label>
-              <input type="text" class="form-control" name="title" id="title" placeholder="Nhập tên danh mục">
+              <label for="title">Danh mục</label>
+              <input type="text" class="form-control" name="title" id="title" placeholder="Nhập tên danh mục" >
             </div>
+            @error('title')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="form-group">
-              <label for="description">Password</label>
+              <label for="slug">Định danh</label>
+              <input type="text" class="form-control" name="slug" id="slug" placeholder="Nhập định danh">
+            </div>
+            @error('slug')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <div class="form-group">
+              <label for="description">Mô tả</label>
               <input type="text" class="form-control" name="description" id="description" placeholder="Nhập mô tả">
             </div>
-            <div class="form-group">
-              <label for="exampleInputFile">File input</label>
-              <div class="input-group">
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="exampleInputFile">
-                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                </div>
-                <div class="input-group-append">
-                  <span class="input-group-text">Upload</span>
-                </div>
-              </div>
-            </div>
+            @error('description')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              <input type="checkbox" name="status" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Trạng thái</label>
             </div>
           </div>
-          <!-- /.card-body -->
-
           <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Xác nhận</button>
           </div>
         </form>
       </div>
