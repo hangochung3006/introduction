@@ -27,7 +27,20 @@ class CategoryAdmin extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $data = $request->validate([
+            'title' => 'required|max:50',
+            'description' => 'required|max:200',
+            'slug' => 'required|unique:categories',
+        ],
+        [
+            'title.required'=> 'Bạn chưa nhập tên',
+            'description.required'=> 'Bạn chưa nhập mô tả',
+            'slug.required'=> 'Bạn chưa nhập định danh',
+            'slug.unique'=> 'Định danh phải là duy nhất',
+        ]
+    );
+        return redirect()->back();
     }
 
     /**
