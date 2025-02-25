@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use Str;
 
 class CategoryAdmin extends Controller
 {
@@ -40,9 +42,15 @@ class CategoryAdmin extends Controller
             'slug.unique'=> 'Định danh phải là duy nhất',
         ]
     );
+        $category = new Category();
+        $category->title = $data['title'];
+        $category->description = $data['description'];
+        $category->slug = Str::slug($data['slug']);
+        $category->status = $request->has('status') ? 1 : 0;
+        $category->save();
+
         return redirect()->back();
     }
-
     /**
      * Display the specified resource.
      */
